@@ -108,7 +108,10 @@ function loadFromLocalStorage() {
         if (data.name) document.getElementById('table-name').innerText = data.name;
         if (data.role) document.getElementById('table-role').innerText = data.role;
 
-        if (data.theme === 'dark') {
+        if (data.theme === 'light') {
+            document.body.classList.remove('dark-mode');
+            document.querySelector('.theme-btn').innerText = "🌙 Gelap";
+        } else {
             document.body.classList.add('dark-mode');
             document.querySelector('.theme-btn').innerText = "☀️ Terang";
         }
