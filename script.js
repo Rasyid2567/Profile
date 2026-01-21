@@ -6,11 +6,7 @@ const WELCOME_KEY = 'biodataProWelcomeShown';
 // FUNGSI PRINT
 // =====================
 window.onbeforeprint = () => {
-    // 1. Update Tanggal Cetak
-    const date = new Date().toLocaleDateString('id-ID', {
-        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-    });
-    document.getElementById('print-date').innerText = date;
+
 
     // 2. Ekspor Nama dan Role/Status ke tampilan Print
     // Kita ambil dari ID editor (table-name dan table-role)
