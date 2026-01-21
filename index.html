@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata</title>
+    <link rel="shortcut icon" href="https://api.dicebear.com/9.x/big-ears-neutral/svg?seed=Brian" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="print-area">
+        <div class="print-container">
+            <h1 class="print-main-title">Biodata Diri</h1>
+
+            <div class="print-section">
+                <h3 class="print-sub-title">👤 Profil Utama</h3>
+                <div class="print-row">
+                    <span class="print-label">Nama</span>
+                    <span class="print-separator">:</span>
+                    <span id="print-nama-val" class="print-value"></span>
+                </div>
+                <div class="print-row">
+                    <span class="print-label">Status</span>
+                    <span class="print-separator">:</span>
+                    <span id="print-status-val" class="print-value"></span>
+                </div>
+                <div id="print-profil-list"></div>
+            </div>
+
+            <div class="print-section">
+                <h3 class="print-sub-title">🎓 Pendidikan</h3>
+                <div id="print-pendidikan-list"></div>
+            </div>
+
+            <div class="print-section">
+                <h3 class="print-sub-title">⚡ Keahlian</h3>
+                <div id="print-keahlian-list"></div>
+            </div>
+
+            <div class="print-section">
+                <h3 class="print-sub-title">📞 Kontak</h3>
+                <div id="print-kontak-list"></div>
+            </div>
+
+            <div class="print-footer">
+                <p>Dicetak pada: <span id="print-date"></span></p>
+            </div>
+        </div>
+    </div>
+    <div class="welcome-overlay" id="welcomeModal">
+        <div class="welcome-box">
+            <div class="welcome-icon">👋</div>
+            <div class="welcome-title">Selamat Datang!</div>
+            <div class="welcome-message">Halo! Selamat datang.<br>Silakan edit dan kelola biodata Anda dengan mudah.
+            </div>
+            <button class="welcome-btn" onclick="closeWelcome()">Mulai Sekarang</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box">
+            <div class="modal-icon">🗑️</div>
+            <div class="modal-title">Hapus Baris?</div>
+            <div class="modal-message">Apakah Anda yakin ingin menghapus baris ini?</div>
+            <div class="modal-buttons">
+                <button class="modal-btn cancel" onclick="closeModal()">Batal</button>
+                <button class="modal-btn confirm" onclick="confirmDelete()">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="header">
+            <button onclick="window.print()" class="print-btn">🖨️ Print</button>
+            <button class="theme-btn" onclick="toggleTheme()">🌙 Mode</button>
+            <div class="avatar-container">
+                <img src="https://api.dicebear.com/9.x/personas/svg?seed=Eden" alt="Avatar" class="avatar">
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h1 class="info-name" id="table-name" contenteditable="true">Rasyid</h1>
+            <div class="info-role" id="table-role" contenteditable="true">Pelajar</div>
+
+            <div id="profil" class="tab-content active">
+                <table class="info-table" id="table-profil">
+                    <tr>
+                        <td class="label" contenteditable="true">No Absen</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">15</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                    <tr>
+                        <td class="label" contenteditable="true">Kelas</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">X RPL C</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                </table>
+                <button class="add-btn" onclick="addRow('table-profil')">+</button>
+            </div>
+
+            <div id="pendidikan" class="tab-content">
+                <table class="info-table" id="table-pendidikan">
+                    <tr>
+                        <td class="label" contenteditable="true">SMK</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">SMKN 1 Jenangan</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                    <tr>
+                        <td class="label" contenteditable="true">SMP</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">SMPN 1 Bungkal</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                    <tr>
+                        <td class="label" contenteditable="true">SD</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">SDN 1 Simo</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                </table>
+                <button class="add-btn" onclick="addRow('table-pendidikan')">+</button>
+            </div>
+
+            <div id="keahlian" class="tab-content">
+                <table class="info-table" id="table-keahlian">
+                    <tr>
+                        <td class="label" contenteditable="true">Coding</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">HTML, CSS, JS</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                </table>
+                <button class="add-btn" onclick="addRow('table-keahlian')">+</button>
+            </div>
+
+            <div id="kontak" class="tab-content">
+                <table class="info-table" id="table-kontak">
+                    <tr>
+                        <td class="label" contenteditable="true">Telepon</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">+62 851-5505-4456</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                    <tr>
+                        <td class="label" contenteditable="true">Email</td>
+                        <td class="separator">:</td>
+                        <td class="value" contenteditable="true">rasyidponorogo@gmail.com</td>
+                        <td><button class="del-btn" onclick="removeRow(this)">✕</button></td>
+                    </tr>
+                </table>
+                <button class="add-btn" onclick="addRow('table-kontak')">+</button>
+            </div>
+        </div>
+
+        <div class="nav-menu">
+            <div class="nav-item active" onclick="openTab(event, 'profil')">👤<br>Profil</div>
+            <div class="nav-item" onclick="openTab(event, 'pendidikan')">🎓<br>Pendidikan</div>
+            <div class="nav-item" onclick="openTab(event, 'keahlian')">⚡<br>Keahlian</div>
+            <div class="nav-item" onclick="openTab(event, 'kontak')">📞<br>Kontak</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
