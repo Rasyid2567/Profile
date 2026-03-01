@@ -542,3 +542,13 @@ body.dark-mode .welcome-message {
     color: #aaa;
     pointer-events: none;
 }
+
+.avatar {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.avatar:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}

@@ -295,3 +295,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tampilkan popup selamat datang
     setTimeout(showWelcome, 300);
 });
+
+// ====================
+// FUNGSI FOTO PROFIL
+// ====================
+
+function changePhoto() {
+    document.getElementById("photoInput").click();
+}
+
+function previewPhoto(event) {
+    const reader = new FileReader();
+    reader.onload = function () {
+        const img = document.getElementById("profileImage");
+        img.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
